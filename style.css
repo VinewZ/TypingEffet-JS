@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 3rem;
+    font-weight: bold;
+    background-color: #333;
+    color: rgb(0, 204, 255);
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.textTypingEffect{
+    color: rgb(255, 81, 0);
+    text-transform: uppercase;
+}
+button{
+    font-size: 2rem;
+    padding: 0.5em 1em;
+    color: #fff;
+    border-radius: 10px;
+    outline: none;
+    background-color: #333;
+}
