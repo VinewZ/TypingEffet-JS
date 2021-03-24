@@ -1,33 +1,32 @@
-const textArray = ['is fun','is cool ${emoji}', 'is exhausting']
+const textArray = ['is fun','is cool', 'is exhausting']
 const textSpan = document.querySelector('.textTypingEffect')
-let textCurrentWord = 0, textCurrentLetter = 0
-const typingDelay = 300
-const eraseDelay = 200
+const typingDelay = 400
+const erasingDelay = 250
 const newWordDelay = 2000
+let currentLetter = 0, currentWord = 0
 
-
-function typeWord(){
-    if(textCurrentLetter < textArray[textCurrentWord].length){
-    textSpan.textContent += textArray[textCurrentWord].charAt(textCurrentLetter)
-    textCurrentLetter++
-    setTimeout(typeWord, typingDelay)
-    } else (
+function type(){
+    if(currentLetter < textArray[currentWord].length){
+        textSpan.textContent += textArray[currentWord].charAt(currentLetter)
+        currentLetter++
+        setTimeout(type, typingDelay)
+    } else{
         setTimeout(erase, newWordDelay)
-    )
-    
-    function erase(){
-        if(textCurrentLetter > 0){
-            textSpan.textContent = textArray[textCurrentWord].substring(0, textCurrentLetter-1)
-            textCurrentLetter--
-            setTimeout(erase, eraseDelay)
-        } else{
-            textCurrentWord++
-            if(textCurrentWord == textArray.length){
-                textCurrentWord = 0
-            }
-            setTimeout(typeWord, typingDelay)
-        }
     }
 }
 
-addEventListener('load', typeWord)
+function erase(){
+    if(currentLetter > 0){
+        textSpan.textContent = textArray[currentWord].substring(0, currentLetter-1)
+        currentLetter--
+        setTimeout(erase, erasingDelay)
+    } else{
+        currentWord++
+        if(currentWord == textArray.length){
+            currentWord = 0
+        }
+        setTimeout(type, typingDelay)
+    }
+}
+
+addEventListener('load', type)
